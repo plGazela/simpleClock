@@ -32,28 +32,40 @@
             }
             .clock__hour {
                 background: #FFFFFF;
-                width: 20vw;
-                min-width: 64px;
-                max-width: 200px;
-                height: 10px;
+                height: 20vw;
+                min-height: 64px;
+                max-height: 200px;
+                width: 10px;
                 border-radius: 50px;
                 position: absolute;
-                top: 49.4%;
+                bottom: 49.4%;
                 left: 49.4%;
-                transform-origin: 2.5% 50%;
+                transform-origin: 50% 97.5%;
                 z-index: 1;
             }
             .clock__minute {
                 background: #C6C6C6;
-                width: 35vw;
-                min-width: 112px;
-                max-width: 350px;
-                height: 10px;
+                width: 10px;
+                height: 35vw;
+                min-height: 112px;
+                max-height: 350px;
                 border-radius: 50px;
                 position: absolute;
-                top: 49.4%;
+                bottom: 49.4%;
                 left: 49.4%;
-                transform-origin: 1.5% 50%;
+                transform-origin: 50% 98.5%;
+            }
+            .clock__second {
+                background: #000000;
+                width: 5px;
+                height: 35vw;
+                min-height: 112px;
+                max-height: 350px;
+                border-radius: 50px;
+                position: absolute;
+                bottom: 49.4%;
+                left: 49.6%;
+                transform-origin: 50% 98.5%;
             }
             .clock__dot {
                 background: #404040;
@@ -73,17 +85,29 @@
             <div class="clock__dot"></div>
             <div class="clock__hour"></div>
             <div class="clock__minute"></div>
+            <div class="clock__second"></div>
         </div>
         <script>
             const hourEl = document.querySelector(".clock__hour")
-            const minuteEL = document.querySelector(".clock__minute")
+            const minuteEl = document.querySelector(".clock__minute")
+            const secondEl = document.querySelector(".clock__second")
 
             function setClock() {
                 let date = new Date()
                 let hourNow = date.getHours()
                 let minuteNow = date.getMinutes()
-                console.log("Hour now: " + hourNow + ":" + minuteNow)
+                let secondNow = date.getSeconds()
+
+                hDeg = hourNow * 30
+                hourEl.style.transform = "rotate(" + hDeg + "deg)"
+
+                minDeg = minuteNow * 6
+                minuteEl.style.transform = "rotate(" + minDeg + "deg)"
+
+                secDeg = secondNow * 6
+                secondEl.style.transform = "rotate(" + secDeg + "deg)"
             }
+            
             setClock()
             setInterval(setClock, 1000)
         </script>
